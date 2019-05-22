@@ -1,5 +1,4 @@
 require './spec/spec_helper'
-require './lib/storage/internal/retrieve_data_service'
 
 describe Storage::Internal::RetrieveDataService do
   describe '#call' do

@@ -1,5 +1,5 @@
 require './lib/base/keyword'
-require './lib/logger'
+require './lib/main_logger'
 
 class ComparisonService < Base::Keyword
   attr_reader :internal_storage_type
