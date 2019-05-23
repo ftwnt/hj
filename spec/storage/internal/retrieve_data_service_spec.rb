@@ -21,7 +21,7 @@ describe Storage::Internal::RetrieveDataService do
       let(:source_type) { :invalid }
 
       it 'raises error' do
-        expect { subject }.to raise_error ArgumentError
+        expect { subject }.to raise_error(ArgumentError, 'Unknown type of internal source')
       end
     end
   end

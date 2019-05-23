@@ -19,7 +19,7 @@ module Storage
       private
 
       def retrieval_service
-        raise ArgumentError, 'Unknown type of source' unless source_type_allowed?
+        raise ArgumentError, 'Unknown type of internal source' unless source_type_allowed?
 
         Object.const_get("Storage::Internal::Sources::#{source_class_name}")
       end

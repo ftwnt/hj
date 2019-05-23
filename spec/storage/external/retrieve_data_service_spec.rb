@@ -3,7 +3,6 @@ require './spec/spec_helper'
 describe Storage::External::RetrieveDataService do
   describe '#call' do
     let(:url) { 'http://some.external.endpoint' }
-    let(:logger_stub) { double('MainLogger', error: true) }
 
     let(:faraday) { service.send(:connection) }
     let(:service) { described_class.new(url: url) }
