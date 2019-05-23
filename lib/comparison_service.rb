@@ -80,7 +80,7 @@ class ComparisonService < Base::Keyword
         record.slice(*COMPARED_ATTRIBUTES).to_a
       end
 
-      result << difference_found(local, remote) if (m_local & m_remote).empty?
+      result << difference(local, remote) if m_remote != (m_local & m_remote)
     end
 
     result
@@ -93,10 +93,12 @@ class ComparisonService < Base::Keyword
     }
   end
 
-  def difference_found(local, remote)
+  def difference(local, remote)
     obj = { remote_reference: remote[:reference], discrepancies: [] }
 
     obj[:discrepancies] << COMPARED_ATTRIBUTES.map do |attribute|
+      next if remote[attribute] == local[attribute]
+
       [
         attribute,
         {
@@ -104,7 +106,7 @@ class ComparisonService < Base::Keyword
           local: local[attribute]
         }
       ]
-    end.to_h
+    end.compact.to_h
 
     obj
   end

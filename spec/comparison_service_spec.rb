@@ -35,6 +35,8 @@ describe ComparisonService do
   context 'when source_type is valid' do
     let(:source_type) { Storage::Internal::RetrieveDataService::ALLOWED_SOURCE_TYPES.sample }
 
+    before { allow(external_service).to receive(:call) { {} } }
+
     it 'calls internal data retrieval service' do
       expect(internal_service).to receive(:call).with(source_type: source_type)
 
@@ -48,8 +50,6 @@ describe ComparisonService do
     end
 
     context 'and external service returns nothing' do
-      before { allow(external_service).to receive(:call) { {} } }
-
       let(:expected_result) { [] }
 
       it { is_expected.to eq(expected_result) }
